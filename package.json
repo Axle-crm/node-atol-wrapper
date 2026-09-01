@@ -1,7 +1,7 @@
 {
   "name": "node-atol-wrapper",
   "description": "Node ATOL DTO 10 wrapper",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "main": "bindings.js",
   "types": "bindings.d.ts",
   "scripts": {
@@ -22,7 +22,7 @@
   "engines": {
     "node": ">= 16.0.0"
   },
-  "homepage": "https://github.com/farafonov-alexey/node-atol-wrapper",
+  "homepage": "https://github.com/Axle-crm/node-atol-wrapper",
   "keywords": [
     "Node.js",
     "wrapper",
@@ -30,8 +30,8 @@
     "Атол ДТО 10"
   ],
   "author": {
-    "name": "farafonov.alexey",
-    "url": "https://github.com/farafonov-alexey",
+    "name": "Axle-crm",
+    "url": "https://github.com/Axle-crm",
     "email": "farafonov.alexey@gmail.com"
   },
   "contributors": [
@@ -39,7 +39,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/farafonov-alexey/node-atol-wrapper.git"
+    "url": "git://github.com/Axle-crm/node-atol-wrapper.git"
   },
   "license": "MIT"
 }
