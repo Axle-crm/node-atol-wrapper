@@ -24,6 +24,7 @@ export interface Settings {
   UsbDevicePath: string
   UseDocumentsJournal: boolean
   UserPassword: string
+  GrpcServerPort?: number
 }
 export interface LastDocument {
   documentNumber: number
@@ -62,7 +63,49 @@ export declare class Fptr10 {
   processJsonAsync(json: unknown, cb: (error: any, result: any) => void): void
   fnReport(type: number): any
   findLastDocument(): LastDocument
+
+  setParam(id: number, value: number | string | boolean | Buffer | { year: number; month: number; day: number; hour: number; minute: number; second: number }): boolean
+  getParamInt(id: number): number
+  getParamBool(id: number): boolean
+  getParamDouble(id: number): number
+  getParamStr(id: number): string
+  getParamByteArray(id: number): Buffer
+  getParamDatetime(id: number): { year: number; month: number; day: number; hour: number; minute: number; second: number }
+  resetParams(): boolean
+  errorCode(): number
+  errorDescription(): string
+  resetError(): void
+
+  operatorLogin(): boolean
+  queryData(): boolean
+  fnQueryData(): boolean
+  openShift(): boolean
+  report(): boolean
+  openReceipt(): boolean
+  cancelReceipt(): boolean
+  closeReceipt(): boolean
+  checkDocumentClosed(): boolean
+  continuePrint(): boolean
+  registration(): boolean
+  payment(): boolean
+  receiptTotal(): boolean
+  beginNonfiscalDocument(): boolean
+  endNonfiscalDocument(): boolean
+  printText(): boolean
+  printBarcode(): boolean
+  beginMarkingCodeValidation(): boolean
+  getMarkingCodeValidationStatus(): boolean
+  cancelMarkingCodeValidation(): boolean
+  acceptMarkingCode(): boolean
+  declineMarkingCode(): boolean
+  readDeviceSetting(): boolean
+  writeDeviceSetting(): boolean
+  utilFormTlv(): boolean
+  utilFormNomenclature(): boolean
 }
+
+export type AtolDtoVariant = 'dto' | 'dto-piot'
+export function load(variant?: AtolDtoVariant): { Fptr10: typeof Fptr10 }
 
 export enum Port {
   LIBFPTR_PORT_COM = 0,

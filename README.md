@@ -2,7 +2,17 @@
 
 Название
 =========
-Node.js обертка для драйвера торгового оборудования (ДТО) версии `10.10.8.0` от компании [АТОЛ](https://www.atol.ru/)
+Node.js обертка для драйвера торгового оборудования (ДТО) версии `10.10.9.0` (без ТС ПИОТ) и `10.10.8.24` (с ТС ПИОТ) от компании [АТОЛ](https://www.atol.ru/)
+
+Выбор комплекта DLL при загрузке:
+
+```js
+const { load } = require('node-atol-wrapper');
+const { Fptr10 } = load('dto');      // 10.10.9.0
+const { Fptr10 } = load('dto-piot'); // 10.10.8.24 + grpc
+```
+
+Помимо JSON (`processJson`) доступны Native API: `setParam` / `getParamInt|Str|Bool|Double` и операции `openReceipt`, `registration`, `payment`, `closeReceipt`, `checkDocumentClosed`, `continuePrint`, `queryData`, `fnQueryData`, проверка КМ и т.д.
 
 [ Источник ](https://forum.atol.ru/lofiversion/index.php/t34345.html)
 
