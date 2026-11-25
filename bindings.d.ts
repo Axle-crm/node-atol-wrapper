@@ -104,7 +104,15 @@ export declare class Fptr10 {
   utilFormNomenclature(): boolean
 }
 
-export type AtolDtoVariant = 'dto' | 'dto-piot'
+export type AtolDtoVariant = 'dto' | 'dto-piot' | 'dto-uem' | 'dto-piot-uem'
+export type AtolRequiredService = 'mdl' | 'uema'
+export interface AtolDtoVariantInfo {
+  key: AtolDtoVariant
+  dtoVersion: string
+  tsPiot: boolean
+  requiredService: AtolRequiredService
+}
+export const variants: ReadonlyArray<AtolDtoVariantInfo>
 export function load(variant?: AtolDtoVariant): { Fptr10: typeof Fptr10 }
 
 export enum Port {

@@ -5,6 +5,35 @@ const fs = require('fs');
 const bindingPath = binary.find(path.resolve(path.join(__dirname, './package.json')));
 const cache = Object.create(null);
 
+const variants = Object.freeze([
+  {
+    key: 'dto',
+    dtoVersion: '10.10.9.0',
+    tsPiot: false,
+    requiredService: 'mdl'
+  },
+  {
+    key: 'dto-piot',
+    dtoVersion: '10.10.9.20',
+    tsPiot: true,
+    requiredService: 'mdl'
+  },
+  {
+    key: 'dto-uem',
+    dtoVersion: '10.10.8.0',
+    tsPiot: false,
+    requiredService: 'uema'
+  },
+  {
+    key: 'dto-piot-uem',
+    dtoVersion: '10.10.8.24',
+    tsPiot: true,
+    requiredService: 'uema'
+  }
+]);
+
+const variantKeys = new Set(variants.map((item) => item.key));
+
 function toUnpacked(filePath) {
   const asarUnpacked = `${path.sep}app.asar.unpacked${path.sep}`;
   const asar = `${path.sep}app.asar${path.sep}`;
@@ -65,12 +94,22 @@ function ensureVariant(variant) {
   return destNode;
 }
 
+function resolveVariant(variant) {
+  const key = variant == null || variant === '' ? 'dto' : variant;
+  if (!variantKeys.has(key)) {
+    throw new Error(
+      'Unknown ATOL DTO variant: ' + key + '. Expected one of: ' + Array.from(variantKeys).join(', ')
+    );
+  }
+  return key;
+}
+
 function load(variant) {
-  const key = variant === 'dto-piot' ? 'dto-piot' : 'dto';
+  const key = resolveVariant(variant);
   if (!cache[key]) {
     cache[key] = require(ensureVariant(key));
   }
   return cache[key];
 }
 
-module.exports = { load };
+module.exports = { load, variants };

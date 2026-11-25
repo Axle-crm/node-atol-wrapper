@@ -119,6 +119,55 @@
               ]
             }]
           ]
+        },
+        {
+          "destination": "<(PRODUCT_DIR)/dto-uem",
+          "conditions": [
+            ["OS=='win'", {
+              "conditions": [
+                ["arch=='ia32'", {
+                  "files": [
+                    "<(module_root_dir)/src/win-x86/dto-uem/fptr10.dll",
+                    "<(module_root_dir)/src/win-x86/dto-uem/msvcp140.dll"
+                  ]
+                }],
+                ["arch=='x64'", {
+                  "files": [
+                    "<(module_root_dir)/src/win-x64/dto-uem/fptr10.dll",
+                    "<(module_root_dir)/src/win-x64/dto-uem/msvcp140.dll"
+                  ]
+                }]
+              ]
+            }]
+          ]
+        },
+        {
+          "destination": "<(PRODUCT_DIR)/dto-piot-uem",
+          "conditions": [
+            ["OS=='win'", {
+              "conditions": [
+                ["arch=='ia32'", {
+                  "files": [
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/fptr10.dll",
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/msvcp140.dll",
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/fptr10_bridge_grpc.dll",
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/platform_bridge_grpc.dll",
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/libeay32.dll",
+                    "<(module_root_dir)/src/win-x86/dto-piot-uem/ssleay32.dll"
+                  ]
+                }],
+                ["arch=='x64'", {
+                  "files": [
+                    "<(module_root_dir)/src/win-x64/dto-piot-uem/fptr10.dll",
+                    "<(module_root_dir)/src/win-x64/dto-piot-uem/msvcp140.dll",
+                    "<(module_root_dir)/src/win-x64/dto-piot-uem/fptr10_bridge_grpc.dll",
+                    "<(module_root_dir)/src/win-x64/dto-piot-uem/platform_bridge_grpc.dll",
+                    "<(module_root_dir)/src/win-x64/dto-piot-uem/libeay32.dll"
+                  ]
+                }]
+              ]
+            }]
+          ]
         }
       ]
     },
@@ -183,6 +232,14 @@
         },
         {
           "destination": "<(PRODUCT_DIR)/dto-piot",
+          "files": ["<(PRODUCT_DIR)/node_atol_wrapper.node"]
+        },
+        {
+          "destination": "<(PRODUCT_DIR)/dto-uem",
+          "files": ["<(PRODUCT_DIR)/node_atol_wrapper.node"]
+        },
+        {
+          "destination": "<(PRODUCT_DIR)/dto-piot-uem",
           "files": ["<(PRODUCT_DIR)/node_atol_wrapper.node"]
         }
       ]

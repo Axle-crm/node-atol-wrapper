@@ -2,15 +2,30 @@
 
 Название
 =========
-Node.js обертка для драйвера торгового оборудования (ДТО) версии `10.10.9.0` (без ТС ПИОТ) и `10.10.9.20` (с ТС ПИОТ) от компании [АТОЛ](https://www.atol.ru/)
+Node.js обертка для драйвера торгового оборудования (ДТО) от компании [АТОЛ](https://www.atol.ru/)
+
+Поддерживаемые сборки Windows:
+
+| Ключ | ДТО | ТС ПИОТ | Служба |
+| --- | --- | --- | --- |
+| `dto` | 10.10.9.0 | нет | MDL (`epc-mdl` / `epc-bridge`) |
+| `dto-piot` | 10.10.9.20 | да | MDL (`epc-mdl` / `epc-bridge`) |
+| `dto-uem` | 10.10.8.0 | нет | UEMA (`uem-agent`) |
+| `dto-piot-uem` | 10.10.8.24 | да | UEMA (`uem-agent`) |
 
 Выбор комплекта DLL при загрузке:
 
 ```js
-const { load } = require('node-atol-wrapper');
-const { Fptr10 } = load('dto');      // 10.10.9.0
-const { Fptr10 } = load('dto-piot'); // 10.10.9.20 + grpc
+const { load, variants } = require('node-atol-wrapper');
+const { Fptr10 } = load('dto');           // 10.10.9.0, MDL
+const { Fptr10 } = load('dto-piot');      // 10.10.9.20 + grpc, MDL
+const { Fptr10 } = load('dto-uem');       // 10.10.8.0, UEMA
+const { Fptr10 } = load('dto-piot-uem');  // 10.10.8.24 + grpc, UEMA
 ```
+
+Список сборок доступен через `variants`. Без аргумента `load()` использует `dto`.
+
+> Начиная с ДТО `10.10.9.0` служба UEM больше не нужна, но для работы драйвера требуется служба MDL (`epc-mdl`) из дистрибутива АТОЛ. ДТО `10.10.8.x` требует запущенную службу UEMA (`uem-agent`).
 
 Помимо JSON (`processJson`) доступны Native API: `setParam` / `getParamInt|Str|Bool|Double` и операции `openReceipt`, `registration`, `payment`, `closeReceipt`, `checkDocumentClosed`, `continuePrint`, `queryData`, `fnQueryData`, проверка КМ и т.д.
 

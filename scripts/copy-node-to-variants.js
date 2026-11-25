@@ -8,7 +8,7 @@ if (!fs.existsSync(nodeFile)) {
   process.exit(0);
 }
 
-for (const variant of ['dto', 'dto-piot']) {
+for (const variant of ['dto', 'dto-piot', 'dto-uem', 'dto-piot-uem']) {
   const dir = path.join(release, variant);
   if (!fs.existsSync(dir)) {
     continue;
